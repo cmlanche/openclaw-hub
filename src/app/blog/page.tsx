@@ -4,13 +4,14 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-const translations = {
+const translations: Record<string, any> = {
   en: {
     title: 'Blog',
     subtitle: 'Latest news, tutorials and updates about OpenCLAW',
     readMore: 'Read more',
     minRead: 'min read',
     featured: 'Featured',
+    allPosts: 'All Posts',
   },
   zh: {
     title: '博客',
@@ -18,6 +19,23 @@ const translations = {
     readMore: '阅读更多',
     minRead: '分钟阅读',
     featured: '精选',
+    allPosts: '所有文章',
+  },
+  ja: {
+    title: 'ブログ',
+    subtitle: 'OpenCLAWに関する最新のニュース、チュートリアル、更新情報',
+    readMore: '続きを読む',
+    minRead: '分で読了',
+    featured: '注目',
+    allPosts: 'すべての記事',
+  },
+  es: {
+    title: 'Blog',
+    subtitle: 'Últimas noticias, tutoriales y actualizaciones sobre OpenCLAW',
+    readMore: 'Leer más',
+    minRead: 'min de lectura',
+    featured: 'Destacado',
+    allPosts: 'Todas las publicaciones',
   },
 };
 
@@ -26,7 +44,7 @@ const posts = {
     {
       slug: 'what-is-openclaw',
       title: 'What is OpenCLAW? A Complete Guide',
-      excerpt: 'Learn about OpenCLAW, the self-hosted AI gateway that connects your favorite chat apps to AI agents. This comprehensive guide covers everything you need to know.',
+      excerpt: 'Learn about OpenCLAW, the self-hosted AI gateway that connects your favorite chat apps to AI agents. This comprehensive guide covers everything you need to know about this powerful tool.',
       date: '2026-03-01',
       readTime: 8,
       category: 'Introduction',
@@ -35,7 +53,7 @@ const posts = {
     {
       slug: 'quick-start-guide',
       title: 'Quick Start Guide: Get OpenCLAW Running in 5 Minutes',
-      excerpt: 'A step-by-step tutorial to get OpenCLAW up and running in just 5 minutes. From installation to your first AI-powered message.',
+      excerpt: 'A step-by-step tutorial to get OpenCLAW up and running in just 5 minutes. From installation to your first AI-powered message. Perfect for beginners!',
       date: '2026-03-01',
       readTime: 6,
       category: 'Tutorial',
@@ -44,7 +62,7 @@ const posts = {
     {
       slug: 'whatsapp-setup',
       title: 'How to Connect WhatsApp to OpenCLAW',
-      excerpt: 'Complete guide to connecting your WhatsApp account to OpenCLAW. Start using AI assistants through WhatsApp today.',
+      excerpt: 'Complete guide to connecting your WhatsApp account to OpenCLAW. Start using AI assistants through WhatsApp today with this detailed tutorial.',
       date: '2026-02-28',
       readTime: 10,
       category: 'Tutorial',
@@ -52,7 +70,7 @@ const posts = {
     {
       slug: 'telegram-bot',
       title: 'Create a Telegram Bot with OpenCLAW',
-      excerpt: 'Learn how to create a powerful Telegram bot powered by AI using OpenCLAW. Full step-by-step instructions included.',
+      excerpt: 'Learn how to create a powerful Telegram bot powered by AI using OpenCLAW. Full step-by-step instructions included for developers.',
       date: '2026-02-27',
       readTime: 12,
       category: 'Tutorial',
@@ -60,7 +78,7 @@ const posts = {
     {
       slug: 'discord-integration',
       title: 'OpenCLAW Discord Integration Guide',
-      excerpt: 'Add AI capabilities to your Discord server with OpenCLAW. Create your own AI-powered Discord bot in minutes.',
+      excerpt: 'Add AI capabilities to your Discord server with OpenCLAW. Create your own AI-powered Discord bot in minutes with this comprehensive guide.',
       date: '2026-02-26',
       readTime: 15,
       category: 'Tutorial',
@@ -68,10 +86,26 @@ const posts = {
     {
       slug: 'self-hosted-ai',
       title: 'Why Self-Hosted AI is the Future',
-      excerpt: 'Explore the benefits of self-hosted AI solutions like OpenCLAW. Privacy, control, and customization explained.',
+      excerpt: 'Explore the benefits of self-hosted AI solutions like OpenCLAW. Privacy, control, and customization explained in detail.',
       date: '2026-02-25',
       readTime: 10,
       category: 'Opinion',
+    },
+    {
+      slug: 'openclaw-vs-other-bots',
+      title: 'OpenCLAW vs Other AI Bots: Which is Better?',
+      excerpt: 'A detailed comparison between OpenCLAW and other popular AI bots. Find out why self-hosted solutions are gaining popularity.',
+      date: '2026-02-24',
+      readTime: 12,
+      category: 'Comparison',
+    },
+    {
+      slug: 'security-best-practices',
+      title: 'OpenCLAW Security Best Practices',
+      excerpt: 'Learn how to secure your OpenCLAW installation with these essential security tips and best practices for self-hosted AI.',
+      date: '2026-02-23',
+      readTime: 8,
+      category: 'Security',
     },
   ],
   zh: [
@@ -126,13 +160,53 @@ const posts = {
       category: '观点',
     },
   ],
+  ja: [
+    {
+      slug: 'what-is-openclaw',
+      title: 'OpenCLAWとは？完全ガイド',
+      excerpt: 'お気に入りのチャットアプリをAIエージェントに接続するセルフホスト型AIゲートウェイ、OpenCLAWについて学びましょう。',
+      date: '2026-03-01',
+      readTime: 8,
+      category: 'はじめに',
+      featured: true,
+    },
+    {
+      slug: 'quick-start-guide',
+      title: 'クイックスタート：5分でOpenCLAWを実行',
+      excerpt: '5分でOpenCLAWを起動するステップバイステップチュートリアル。インストールから最初のAIメッセージまで。',
+      date: '2026-03-01',
+      readTime: 6,
+      category: 'チュートリアル',
+      featured: true,
+    },
+  ],
+  es: [
+    {
+      slug: 'what-is-openclaw',
+      title: '¿Qué es OpenCLAW? Guía Completa',
+      excerpt: 'Aprende sobre OpenCLAW, la puerta de enlace de IA autoalojada que conecta tus aplicaciones de chat favoritas con agentes de IA.',
+      date: '2026-03-01',
+      readTime: 8,
+      category: 'Introducción',
+      featured: true,
+    },
+    {
+      slug: 'quick-start-guide',
+      title: 'Guía de Inicio Rápido: Ejecuta OpenCLAW en 5 Minutos',
+      excerpt: 'Un tutorial paso a paso para poner en marcha OpenCLAW en solo 5 minutos. Desde la instalación hasta tu primer mensaje con IA.',
+      date: '2026-03-01',
+      readTime: 6,
+      category: 'Tutorial',
+      featured: true,
+    },
+  ],
 };
 
 function BlogContent() {
   const searchParams = useSearchParams();
   const lang = searchParams.get('lang') || 'en';
-  const t = translations[lang as keyof typeof translations];
-  const blogPosts = posts[lang as keyof typeof posts];
+  const t = translations[lang] || translations.en;
+  const blogPosts = posts[lang] || posts.en;
   const featuredPosts = blogPosts.filter(p => p.featured);
   const regularPosts = blogPosts.filter(p => !p.featured);
 
