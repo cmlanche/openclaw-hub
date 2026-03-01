@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://openclaw-hub-chi.vercel.app/sitemap.xml
