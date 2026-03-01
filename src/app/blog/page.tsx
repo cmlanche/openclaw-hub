@@ -39,7 +39,7 @@ const translations: Record<string, any> = {
   },
 };
 
-const posts = {
+const posts: Record<string, any> = {
   en: [
     {
       slug: 'what-is-openclaw',
@@ -207,8 +207,8 @@ function BlogContent() {
   const lang = searchParams.get('lang') || 'en';
   const t = translations[lang] || translations.en;
   const blogPosts = posts[lang] || posts.en;
-  const featuredPosts = blogPosts.filter(p => p.featured);
-  const regularPosts = blogPosts.filter(p => !p.featured);
+  const featuredPosts: any[] = blogPosts.filter((p: any) => p.featured);
+  const regularPosts: any[] = blogPosts.filter((p: any) => !p.featured);
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] py-20 px-4">
@@ -222,7 +222,7 @@ function BlogContent() {
           <div className="mb-12">
             <h2 className="text-xl font-semibold text-gray-400 mb-6">{t.featured}</h2>
             <div className="space-y-6">
-              {featuredPosts.map((post) => (
+              {featuredPosts.map((post: any) => (
                 <article key={post.slug} className="p-6 bg-gradient-to-br from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-2xl hover:border-blue-500/50 transition-all">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">{post.category}</span>
@@ -239,7 +239,7 @@ function BlogContent() {
         )}
 
         <div className="space-y-6">
-          {regularPosts.map((post) => (
+          {regularPosts.map((post: any) => (
             <article key={post.slug} className="p-6 bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 rounded-2xl hover:border-blue-500/50 transition-all">
               <div className="flex items-center gap-3 mb-3">
                 <span className="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300">{post.category}</span>
